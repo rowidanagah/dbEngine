@@ -11,3 +11,8 @@
 
 ### excute commands 
 
+baseDir=''
+#PATH=$PATH:$baseDir/create:$baseDir/validate:
+
+PATH="$baseDir:$baseDir/connect:$baseDir/create:$baseDir/databases:$baseDir/validate:$PATH"
+echo $PATH
