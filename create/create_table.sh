@@ -41,7 +41,7 @@ function checkTypeofSTring(){
     fi
 }
 
-# check if file exists 
+# check if table file exists 
 function duplicatedTable(){
     if [[ -f $1 ]] 
     then
