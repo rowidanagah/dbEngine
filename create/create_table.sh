@@ -2,7 +2,8 @@
 
 # validation 
 function notValid(){
-    if ! [[ $1 =~ ^[a-zA-Z]+$ ]]; then
+    if ! [[ $1 =~ ^[a-zA-Z]+$ ]]
+    then
         echo 'Wrong name. Only a-zA-Z characters are allowed'
         return 0
     else
@@ -10,6 +11,26 @@ function notValid(){
 
     fi
 }   
+
+# a function that will check is the 
+function checkTypeofInt(){
+    # $1 -> for val name
+    if [[ $1 =~ ^[0-9]+$ ]]
+    then 
+        return 1
+    else 
+        return 0
+    fi
+}
+
+function checkTypeofSTring(){
+   if  [[ $1 =~ ^[a-zA-Z]+$ ]]
+   then
+        return 1
+    else
+        return 0
+    fi
+}
 
 # check if file exists 
 function duplicatedTable(){
@@ -48,6 +69,14 @@ function CreateTablefiles(){
 
 # start running rigth here
 getTableName 
+
+# if validName :
+# then
+#     table_name=$1
+# else :
+#     getTableName $1
+
+
 echo $table_name
 
 
