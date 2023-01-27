@@ -62,7 +62,7 @@ function getTableName(){
     done
 }
 
-#a functions that handel pk constrain 
+# a functions that handel pk constrain 
 function CreatePrimaryKey(){
     read -p "write (pk) column name : " col_name
     if validateColName $col_name 
@@ -76,9 +76,13 @@ function CreatePrimaryKey(){
 
 colHeaders=()
 colType=()
+# copy with it  till now
+cd ../
+path=$PWD/data/tmp
+
 
 function validateColName(){
-    # if a valid col name -> append it colHeaders array
+    # if a valid col name -> append it to colHeaders array
     if validName $1
     then
         colHeaders+=($1)
@@ -128,14 +132,19 @@ function CreateColumns(){
 # to handel file for table cols records and metadata file
 function CreateTablefiles(){
 
-    #touch $table_name
+    table_file="$path/$table_name"
+    meta_file="$path/metaData/$table_name"
+
     
-    echo "$table_name:$ColsNumber"  # >> $metaFile
+    echo "$table_name:$ColsNumber"  >> $meta_file
+    
+    touch $table_file
+
     #colHeaders colType
     ColNumber=0
     while [ ! $ColsNumber -eq $ColNumber ]
     do
-        echo "${colHeaders[$ColNumber]}:$(( $ColNumber+1)):${colType[$ColNumber]}" # >> $metaFile
+        echo "${colHeaders[$ColNumber]}:$(( $ColNumber+1)):${colType[$ColNumber]}" >> $meta_file
         let ColNumber+=1
 
     done        
@@ -145,7 +154,7 @@ function CreateTablefiles(){
 # start running rigth here
 getTableName 
 
-# if validName :
+# if validName $1 :
 # then
 #     table_name=$1
 # else :
@@ -157,7 +166,6 @@ echo $table_name
 
 if duplicatedTable $table_name
 then
-    echo "dup"
     getTableName
 else
     CreatePrimaryKey #get pk first

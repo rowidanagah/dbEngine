@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 # cd ..
 # path=$PWD/data/$1
 
