@@ -26,9 +26,9 @@ function checkTypeofInt(){
     # $1 -> for val name
     if [[ $1 =~ ^[0-9]+$ ]]
     then 
-        return 1
-    else 
         return 0
+    else 
+        return 1
     fi
 }
 
@@ -77,7 +77,7 @@ function CreatePrimaryKey(){
 colHeaders=()
 colType=()
 # copy with it  till now
-cd ../
+#cd ../
 path=$PWD/data/tmp
 
 
@@ -97,35 +97,39 @@ function CreateColumns(){
     typeset -i numOfCols
     
     read -p "write your number of columns : " numOfCols
-    let ColsNumber=$numOfCols+1
-    echo $ColsNumber
-    while [ $numOfCols -gt 0 ]
-    do
-        read -p "write column name : " col_name
-        
-        if validateColName $col_name 
-        then # get  col type
-            echo "chooce column datatype : "
-                select datatype in "int" "string"
-                do
-                    case $datatype in
-                        "int" )
-                            colType+=($datatype)
-                            break;;
+    if checkTypeofInt $numOfCols
+    then 
+        let ColsNumber=$numOfCols+1
+        echo $ColsNumber
+        while [ $numOfCols -gt 0 ]
+        do
+            read -p "write column name : " col_name
+            
+            if validateColName $col_name 
+            then # get  col type
+                echo "chooce column datatype : "
+                    select datatype in "int" "string"
+                    do
+                        case $datatype in
+                            "int" )
+                                colType+=($datatype)
+                                break;;
 
-                        "string" ) 
-                            colType+=($datatype)
-                            break;;
-                    esac
-                done
-                let numOfCols-=1
-       
+                            "string" ) 
+                                colType+=($datatype)
+                                break;;
+                        esac
+                    done
+                    let numOfCols-=1
+        
+            else 
+                echo "not a valid column name !"
+            fi 
+            
+        done
         else 
-             echo "not a valid column name !"
-        fi 
-        
-    done
-
+            echo "write a valid number of columns "
+        fi
 }
 
 

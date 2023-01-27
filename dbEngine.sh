@@ -11,8 +11,20 @@
 
 ### excute commands 
 
-baseDir=''
-#PATH=$PATH:$baseDir/create:$baseDir/validate:
+base="$HOME/bin/dbEngine"
+PATH="$base:$base/connect:$base/create:$base/helpers:$PATH"
 
-PATH="$baseDir:$baseDir/connect:$baseDir/create:$baseDir/databases:$baseDir/validate:$PATH"
+
 echo $PATH
+
+PS="SHQL > "
+
+while true
+do
+	query=()
+
+	read -p  "shql@ > " cmd
+
+	eval $(  create table tmpopoppoo )
+    
+done
