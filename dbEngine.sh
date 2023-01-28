@@ -11,20 +11,21 @@
 
 ### excute commands 
 
-base="$HOME/bin/dbEngine"
+base="$PWD"
 PATH="$base:$base/connect:$base/create:$base/helpers:$PATH"
 
 
 echo $PATH
 
-PS="SHQL > "
 
 while true
 do
 	query=()
 
 	read -p  "shql@ > " cmd
-
-	eval $(  create table tmpopoppoo )
+	$cmd
+	
     
 done
+
+

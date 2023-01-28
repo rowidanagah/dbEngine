@@ -77,7 +77,7 @@ function CreatePrimaryKey(){
 colHeaders=()
 colType=()
 # copy with it  till now
-#cd ../
+cd ../
 path=$PWD/data/tmp
 
 
@@ -135,27 +135,40 @@ function CreateColumns(){
 
 # to handel file for table cols records and metadata file
 function CreateTablefiles(){
-
     table_file="$path/$table_name"
     meta_file="$path/metaData/$table_name"
 
-    
+    echo $PWD
     echo "$table_name:$ColsNumber"  >> $meta_file
     
     touch $table_file
 
     #colHeaders colType
     ColNumber=0
+    hdeaers=""
+    let lstindx=$ColsNumber-1
+    echo $lstindx
+    echo $ColsNumber
     while [ ! $ColsNumber -eq $ColNumber ]
     do
         echo "${colHeaders[$ColNumber]}:$(( $ColNumber+1)):${colType[$ColNumber]}" >> $meta_file
-        let ColNumber+=1
+        echo ${colHeaders[$ColNumber]}
 
-    done        
+        if [ $ColNumber -eq $lstindx ]
+        then
+            hdeaers+="${colHeaders[$ColNumber]}"
+        else 
+            hdeaers+="${colHeaders[$ColNumber]}:"
+        fi
+        echo " header $hdeaers"
+        let ColNumber+=1
+    done  
+    echo $hdeaers >>  $table_file
+      
     
 }
 
-# start running rigth here
+# start running right here
 getTableName 
 
 # if validName $1 :
