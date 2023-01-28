@@ -13,7 +13,6 @@ function Select_all(){
 
 	cat output.txt
 
-
 	rm select.txt output.txt
 }
 
