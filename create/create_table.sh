@@ -78,6 +78,10 @@ colHeaders=()
 colType=()
 # copy with it  till now
 cd ../
+
+
+path=$PWD/data/$connected_db
+
 path=$PWD/data/tmp
 
 
@@ -135,6 +139,7 @@ function CreateColumns(){
 
 # to handel file for table cols records and metadata file
 function CreateTablefiles(){
+    
     table_file="$path/$table_name"
     meta_file="$path/metaData/$table_name"
 
