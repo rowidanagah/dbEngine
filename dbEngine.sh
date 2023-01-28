@@ -11,8 +11,21 @@
 
 ### excute commands 
 
-baseDir=''
-#PATH=$PATH:$baseDir/create:$baseDir/validate:
+base="$PWD"
+PATH="$base:$base/connect:$base/create:$base/helpers:$PATH"
 
-PATH="$baseDir:$baseDir/connect:$baseDir/create:$baseDir/databases:$baseDir/validate:$PATH"
+
 echo $PATH
+
+
+while true
+do
+	query=()
+
+	read -p  "shql@ > " cmd
+	$cmd
+	
+    
+done
+
+
