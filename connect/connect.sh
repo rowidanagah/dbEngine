@@ -5,6 +5,7 @@ read databaseName
 #    clear
 # 	. select.sh
 # fi
+
  cd ..
 cd data
 if [[ -d "$databaseName" ]]
