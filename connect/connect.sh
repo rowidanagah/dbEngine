@@ -11,10 +11,11 @@ cd data
 if [[ -d "$databaseName" ]]
 then
    cd $databaseName
-   clear 
+   clear;
    echo "Welcome to $databaseName database :)"
 #    . select2.sh  path of next
 else
+    cd ../connect
    echo "it doesn't exist!"
     options=("Enter agian name of Database" "Create one" "Exit")
 	select val in "${options[@]}"

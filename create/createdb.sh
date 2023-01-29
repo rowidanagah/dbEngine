@@ -2,13 +2,6 @@
 echo "Enter the name of database "
 read databaseName
 
-# if [  $databaseName == "back" ]
-# then
-# 	clear 
-# 	. select.sh
-# fi
-# if [ "$databaseName" = "" ] || [ "${databaseName//[!0-9]}" != "" ] || [[ $databaseName =~ ['!@#$%^&*()_+'] ]]
-# then
 cd ..
 cd data
 if [[ -d "$databaseName" ]]
@@ -37,16 +30,27 @@ else
   if [ "$databaseName" = "" ] || [ "${databaseName//[!0-9]}" != "" ] || [[ $databaseName =~ ['!@#$%^&*()_+'] ]]
   then
   clear;
-  echo "please enter a valid name"
-
   cd ../create
-  . createdb.sh 
+  echo "please enter a valid name"
+  select val in "please try again and enter a valid database name" "Exit"
+  do
+  case $val in
+  "please try again and enter a valid database name")
+            clear ; . createdb.sh      ; break
+            ;;
+  "Exit")
+  exit;;
+  esac
+  done
+
+  # cd ../create
+  # . createdb.sh 
   else
    mkdir $databaseName
    echo "Database Created Successfully :)"
     cd ../create
    fi
 
-# eli fo2 da law kolo true
+
 fi
 
