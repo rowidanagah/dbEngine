@@ -16,9 +16,7 @@ then
              "Create another one")
             clear ; . createdb.sh      ; break
             ;;
-			#  "Back to MENU")
-      #       clear ; . select.sh ; clear ; break
-      #       ;;
+            
              "Exit")
             	echo "Goodbye :("   ; exit
             ;;
