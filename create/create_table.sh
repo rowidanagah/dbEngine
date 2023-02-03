@@ -96,6 +96,8 @@ function validateColName(){
     fi 
 }
 
+
+
 # a function that will handel creating col along with its types
 function CreateColumns(){
     typeset -i numOfCols
