@@ -107,7 +107,9 @@ function getfielddNumber(){
 function InsertIntoColumns(){
     ## GET table name `from meta folder` as parameter of this function :)"
     getColsumbers $1
-    getfielddNumber $table # number of records
+
+    # getfielddNumber -> GET number of records
+    getfielddNumber $table # number of lines in table for autoincrement PK
     let index=1 # to ignore the headers -> cols name at first
     newRecord="$NR:" # auto inc pk val 
 
