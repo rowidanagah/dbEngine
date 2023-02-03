@@ -29,7 +29,7 @@ function checkTypeofSTring(){
     fi
 }
 
-function checkTypeofCol1(){
+function checkTypeofCol1(){ # dupricated -> not used
     # $1 -> for val col
     # 
     if checkTypeofInt $1 -a $2 -eq "int" #both f type if -> match types
@@ -73,16 +73,18 @@ function checkTypeofCol(){
 }
 
 function getColsumbers(){
+    ## GET table name as parameter of this function :)" -> from meta file
 	ColsNumber=$(awk -F : 'NR==1{print $2}' $1)
 	#echo $ColsNumber
 }
 
 function getColsNameAndTypes(){
+    # get cols name and heaser 
+    # get table name from meta file as a parameter
 	colHeaders=($(awk -F : 'NR!=1{print $1}' $1))
 	colType=($(awk -F : '{print $3}' $1))
 	# echo ${colHeaders[@]}
 	# echo ${colType[@]}
-
 }
 
 function insertIntoTable(){
@@ -93,14 +95,17 @@ function insertIntoTable(){
 }
 
 function getfielddNumber(){
+    # number of record -> number of lines 
+    # get table name  as a parameter -> actual table file :)"
     #let NR=$(awk -F : '{print NR}' $1)
-   # echo $1
+    # echo $1
+
     let NR=$(awk 'END { print NR }' $1)
 }
 
 # a function that will handel adding col val along with  validating its  its types
 function InsertIntoColumns(){
-    ## GET table name as parameter of this function :)"
+    ## GET table name `from meta folder` as parameter of this function :)"
     getColsumbers $1
     getfielddNumber $table # number of records
     let index=1 # to ignore the headers -> cols name at first
@@ -136,9 +141,10 @@ function InsertIntoColumns(){
         fi
 }
 
-
+### START FROM HERE .....
 cd ..
 table_file=$PWD/data/tmp/metaData/$1 ## meta file
+
 table=$PWD/data/tmp/$1 # table file
 
 
@@ -146,7 +152,6 @@ getColsNameAndTypes $table_file
 # insert into table 
 echo "cols name of ${table_file} "
 echo ${colHeaders[@]}
-
 echo "---------------------"
 
 

@@ -55,7 +55,7 @@ function duplicatedTable(){
 
 # get& handel table name -> keep on reading till we get a valid name
 function getTableName(){
-    read -p " enter a valid table name " table_name
+    read -p "enter a valid table name :>  " table_name
     while notValid $table_name 
     do 
         read -p "PLeaze enter a valid user name " table_name

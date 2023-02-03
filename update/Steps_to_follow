@@ -1,0 +1,13 @@
+update
+
+1- get table name 
+
+2- validate table name & is file 
+
+3- get table 
+    1-  cols name 
+    2-  thier datatype 
+    3-  cols number 
+
+4- get pk
+5- get record -> intersection
