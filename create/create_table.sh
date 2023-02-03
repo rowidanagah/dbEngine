@@ -131,7 +131,7 @@ function CreateTablefiles(){
     meta_file="$path/metaData/$table_name"
 
     #echo $PWD
-    echo "$table_name:$ColsNumber"  >> $meta_file
+    echo "$table_name:$ColsNumber"  >> $meta_file #inset tbl name& number of cols
     
     touch $table_file
 
@@ -141,9 +141,12 @@ function CreateTablefiles(){
     let lstindx=$ColsNumber-1
     while [ ! $ColsNumber -eq $ColNumber ]
     do
+        # on each line at meta file for this table -> append ->
+            # col name, col number and  colr type with ':' ad a delimetar or seperator
         echo "${colHeaders[$ColNumber]}:$(( $ColNumber+1)):${colType[$ColNumber]}" >> $meta_file
         #echo ${colHeaders[$ColNumber]}
-
+        # -------------
+        # to ignore adding ":" at the end of col before appending 
         if [ $ColNumber -eq $lstindx ]
         then
             hdeaers+="${colHeaders[$ColNumber]}"
@@ -152,14 +155,14 @@ function CreateTablefiles(){
         fi
         let ColNumber+=1
     done  
-    echo $hdeaers >>  $table_file
+    echo $hdeaers >>  $table_file # append cols name to table file
       
     
 }
 
 colHeaders=()
 colType=()
-# copy with it  till now
+# copy with it till now
 cd ../
 
 
