@@ -1,12 +1,43 @@
 #!/bin/bash
 cd ..
 
-table=$PWD/data/tmp/testHeaders
+function duplicatedTable(){
+    if [[ -f $1 ]] 
+    then
+        return 0
+    else 
+        return 1
+    fi
+
+}
+
+# validation 
+function notValid(){
+    if ! [[ $1 =~ ^[a-zA-Z]+$ ]]
+    then
+        echo 'Wrong name. Only a-zA-Z characters are allowed'
+        return 0
+    else
+        return 1
+
+    fi
+}   
+
+# get& handel table name -> keep on reading till we get a valid name
+function getTableName(){
+    read -p " enter a valid table name " table_name
+    while notValid $table_name 
+    do 
+        read -p "PLeaze enter a valid user name " table_name
+    done
+}
 
 function Select_all(){
 
-	NR=$(awk -F : 'END{print NR}' $1)
-	echo $NR
+	#NR=$(awk -F : 'END{print NR}' $1)
+	
+	let NR=$(awk 'END { print NR }' $1)
+
 
 	tail -n$NR $1 >> select.txt
 
@@ -16,23 +47,25 @@ function Select_all(){
 
 	rm select.txt output.txt
 }
-function getColsumbers(){
-	ColsNumber=$(awk -F : 'NR==1{print $2}' $1)
-	echo $ColsNumber
-}
-
-function getColsNameAndTypes(){
-	colHeaders=($(awk -F : 'NR!=1{print $1}' $1))
-	colType=($(awk -F : '{print $3}' $1))
-	echo "header (${colHeaders[@]})"
-	echo ${colType[1]}
-	
-}
 
 
-meta=$PWD/data/tmp/metaData/rowida
-Select_all $meta
 
-getColsumbers $meta
+meta=$PWD/data/tmp/metaData/$1
+table_name=$PWD/data/tmp/$1
 
-getColsNameAndTypes $meta
+
+if duplicatedTable $table_name
+then
+   echo "Showing your table file records"
+   echo "--------------------------"
+   Select_all $table_name
+
+else
+	echo "table name not found"
+	getTableName
+fi
+
+
+# getColsumbers $meta
+
+# getColsNameAndTypes $meta

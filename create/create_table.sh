@@ -74,17 +74,6 @@ function CreatePrimaryKey(){
     fi 
 }
 
-colHeaders=()
-colType=()
-# copy with it  till now
-cd ../
-
-
-path=$PWD/data/$connected_db
-
-path=$PWD/data/tmp
-
-
 function validateColName(){
     # if a valid col name -> append it to colHeaders array
     if validName $1
@@ -95,8 +84,6 @@ function validateColName(){
         return 1
     fi 
 }
-
-
 
 # a function that will handel creating col along with its types
 function CreateColumns(){
@@ -138,14 +125,12 @@ function CreateColumns(){
         fi
 }
 
-
 # to handel file for table cols records and metadata file
 function CreateTablefiles(){
-    
     table_file="$path/$table_name"
     meta_file="$path/metaData/$table_name"
 
-    echo $PWD
+    #echo $PWD
     echo "$table_name:$ColsNumber"  >> $meta_file
     
     touch $table_file
@@ -154,12 +139,10 @@ function CreateTablefiles(){
     ColNumber=0
     hdeaers=""
     let lstindx=$ColsNumber-1
-    echo $lstindx
-    echo $ColsNumber
     while [ ! $ColsNumber -eq $ColNumber ]
     do
         echo "${colHeaders[$ColNumber]}:$(( $ColNumber+1)):${colType[$ColNumber]}" >> $meta_file
-        echo ${colHeaders[$ColNumber]}
+        #echo ${colHeaders[$ColNumber]}
 
         if [ $ColNumber -eq $lstindx ]
         then
@@ -167,13 +150,23 @@ function CreateTablefiles(){
         else 
             hdeaers+="${colHeaders[$ColNumber]}:"
         fi
-        echo " header $hdeaers"
         let ColNumber+=1
     done  
     echo $hdeaers >>  $table_file
       
     
 }
+
+colHeaders=()
+colType=()
+# copy with it  till now
+cd ../
+
+
+#path=$PWD/data/$connected_db
+
+path=$PWD/data/tmp
+
 
 # start running right here
 getTableName 
@@ -185,7 +178,6 @@ getTableName
 #     getTableName $1
 
 
-echo $table_name
 
 
 if duplicatedTable $table_name

@@ -87,16 +87,15 @@ function getColsNameAndTypes(){
 
 function insertIntoTable(){
    # table_file="$path/$table_name"
-   echo $newRecord
+    echo $newRecord
     echo $newRecord >> $1
 
 }
 
 function getfielddNumber(){
     #let NR=$(awk -F : '{print NR}' $1)
-    echo $1
+   # echo $1
     let NR=$(awk 'END { print NR }' $1)
-    echo $NR
 }
 
 # a function that will handel adding col val along with  validating its  its types
