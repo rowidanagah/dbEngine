@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# validation 
+function notValid(){
+    if ! [[ $1 =~ ^[a-zA-Z]+$ ]]
+    then
+        echo 'Wrong name. Only a-zA-Z characters are allowed'
+        return 0
+    else
+        return 1
+
+    fi
+}   
+
+# check if table file exists 
+function checkTableFile(){
+    if [[ -f $1 ]] 
+    then
+        return 0
+    else 
+        return 1
+    fi
+}
+
+function displayTableData(){
+    # giiven table name -> display its res using awk or cut :)"
+    echo 
+}
+
+# query 
+#  cmd     $1   $2     $3
+#  select  all  from   tablename 
+
+# check if a valid table name
+if notValid $3 
+then 
+    echo "----------------"
+    echo "not a valid table name"
+else
+   select_table.sh $3
+fi

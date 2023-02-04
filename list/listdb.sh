@@ -1,4 +1,4 @@
 clear
 echo "DataBase We Have:"
-ls ../data
+ls data/
 echo "_______________________________________________"

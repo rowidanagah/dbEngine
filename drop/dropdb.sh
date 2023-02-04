@@ -1,7 +1,7 @@
 echo "Enter the name of database you want to delete "
 read databaseName
 
-  cd ..
+#   cd ..
 cd data
 if [[ -d "$databaseName" ]]
 then
@@ -22,7 +22,7 @@ else
 	do
 		case $val in
              "enter again name of Database")
-            clear ; . dropdb.sh ; clear ; break
+            echo $PWD ; . dropdb.sh ; clear ; break
             ;;
              "Exit")
             echo "Goodbye :(" ; exit

@@ -2,7 +2,7 @@
 echo "Enter the name of database "
 read databaseName
 
-echo $PWD
+#echo $PWD
 
 cd data
 
@@ -47,6 +47,7 @@ else
   # . createdb.sh 
   else
    mkdir $databaseName
+   mkdir $databaseName/metaData
    echo "Database Created Successfully :)"
     # cd ../create
    fi

@@ -1,15 +1,5 @@
 #!/bin/bash
-cd ..
-
-function duplicatedTable(){
-    if [[ -f $1 ]] 
-    then
-        return 0
-    else 
-        return 1
-    fi
-
-}
+#cd ..
 
 # validation 
 function notValid(){
@@ -21,7 +11,19 @@ function notValid(){
         return 1
 
     fi
-}   
+} 
+
+function checkTableFile(){
+    if [[ -f $1 ]] 
+    then
+        return 0
+    else 
+        return 1
+    fi
+
+}
+
+  
 
 # get& handel table name -> keep on reading till we get a valid name
 function getTableName(){
@@ -32,7 +34,8 @@ function getTableName(){
     done
 }
 
-function Select_all(){
+function displayTableData(){
+    # giiven table name -> display its res using awk or cut :)"
 
 	#NR=$(awk -F : 'END{print NR}' $1)
 	
@@ -48,22 +51,31 @@ function Select_all(){
 	rm select.txt output.txt
 }
 
+# Start from here
+
+# get a table name as a first argument for this script
+meta=$PWD/data/$connected_db/metaData/$1
+table_name=$1
+table_file=$PWD/data/$connected_db/$1
 
 
-meta=$PWD/data/tmp/metaData/$1
-table_name=$PWD/data/tmp/$1
-
-
-if duplicatedTable $table_name
+# v.0.1 -> skip other options for now -> work on select all first
+if checkTableFile $table_file
 then
    echo "Showing your table file records"
    echo "--------------------------"
-   Select_all $table_name
 
 else
-	echo "table name not found"
+	echo "table with '$table_name' name not found"
 	getTableName
 fi
+
+
+table_file=$PWD/data/$connected_db/$table_name
+
+echo $table_name
+displayTableData $table_file
+
 
 
 # getColsumbers $meta

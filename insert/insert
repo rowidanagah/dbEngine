@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # check if table file exists 
 function duplicatedTable(){
     if [[ -f $1 ]] 
@@ -144,15 +146,18 @@ function InsertIntoColumns(){
 }
 
 ### START FROM HERE .....
-cd ..
-table_file=$PWD/data/tmp/metaData/$1 ## meta file
 
-table=$PWD/data/tmp/$1 # table file
+# insert into tablename
+# cmd    $1    $2
+
+table_file=$PWD/data/$connected_db/metaData/$2 ## meta file
+
+table=$PWD/data/$connected_db/$2 # table file
 
 
 getColsNameAndTypes $table_file
 # insert into table 
-echo "cols name of ${table_file} "
+echo "cols name of $2 "
 echo ${colHeaders[@]}
 echo "---------------------"
 

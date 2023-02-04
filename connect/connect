@@ -31,7 +31,7 @@ echo "connecting to database "
 path=$PWD/data/$1
 
 
-echo $path
+#echo $path
 
 
 if validName $1
@@ -39,9 +39,9 @@ then
     if checkDbDir $path
     then
 
-        echo "connected to $1 database"
+        echo "connected to '$1' database"
         db_name=$1
-        PS3='$1 > '
+        PS3='$1 >'
     else 
         echo "database not exists"
     fi 
@@ -50,4 +50,4 @@ fi
 
 # instead of shql
 export connected_db=$db_name
-echo $connected_db
+#echo $connected_db

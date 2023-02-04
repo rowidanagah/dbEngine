@@ -1,16 +1,26 @@
+#!/bin/bash
+cd ..
 echo "Enter the name of table "
 read table
-	if  [[ -f "$table" ]]
+table_file=$PWD/data/tmp/$table 
+
+echo $table_file
+	if  [[ -f $table_file ]]
 	then
 		echo "----------------------$table Table----------------------"
-		cat $table
+		table_file=$PWD/data/tmp/$table 
+
+		cat $table_file
 		echo ""
-		echo "------------------------------------------"
+		e cho "------------------------------------------"
 		val1="Select specific record"
 		select val in  "$val1" 
 		do
 			case $val in
-				$val1 ) clear ; deleterecord         ; break;;
+				$val1 ) 
+					cd drop/; echo $PWD; 
+					deleterecord;
+					 break;;
 				* ) echo "Invalid choice"
 			esac
 		done
@@ -27,7 +37,6 @@ read table
 		# 	esac
 		# done
 	fi
-
 function deleterecord { 
 	echo "Enter the ID of the record you want to delete "
 	read id
@@ -44,10 +53,10 @@ function deleterecord {
 				esac
 			done
 		else
-               if [  `awk -F ":" '{NF=1; print $1}' $table | grep "$id" ` ]
+               if [  `awk -F ":" '{NF=1; print $1}' $table_file | grep "$id" ` ]
                 then 
-                 row=`awk 'BEGIN{FS=":"}{if ($1=="'$id'") print NR}' $table`
-                 `sed -i ''$row'd' $table`
+                 row=`awk 'BEGIN{FS=":"}{if ($1=="'$id'") print NR}' $table_file`
+                 `sed -i ''$row'd' $table_file`
                     echo "Record is deleted successfully"
 
                 else 

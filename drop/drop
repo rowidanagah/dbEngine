@@ -1,0 +1,23 @@
+
+
+# drop  table
+# cmd   $1
+# drop  database
+
+ if [ $# -eq 0 ] #number of arguments is zero
+then
+    echo "drop: not a valid query "
+
+elif [ $1 == "table" ]
+then
+    if [ -z $connected_db  ]
+    then  
+        echo "you need to connect to a database first"
+    else 
+        dropTable
+    fi 
+
+elif [ $1 == 'database' ]
+then
+    dropdb.sh  
+fi
