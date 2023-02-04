@@ -11,20 +11,8 @@
 
 ### excute commands 
 
-# base="$PWD"
-# PATH="$base:$base/connect:$base/create:$base/helpers:$PATH"
+baseDir=''
+#PATH=$PATH:$baseDir/create:$baseDir/validate:
 
-
-# echo $PATH
-
-
-# while true
-# do
-	read -p "shql > " cmd
-	cmd=". $cmd" ## ec=xcute source  . s1.sh
-	eval $cmd
-	
-    
-# done
-
-
+PATH="$baseDir:$baseDir/connect:$baseDir/create:$baseDir/databases:$baseDir/validate:$PATH"
+echo $PATH
