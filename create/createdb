@@ -2,8 +2,10 @@
 echo "Enter the name of database "
 read databaseName
 
-cd ..
+echo $PWD
+
 cd data
+
 if [[ -d "$databaseName" ]]
 then
   clear;
@@ -14,7 +16,7 @@ then
 	do
 		case $val in
              "Create another one")
-            clear ; . createdb.sh      ; break
+            clear ; ./createdb      ; break
             ;;
             
              "Exit")
@@ -34,7 +36,7 @@ else
   do
   case $val in
   "please try again and enter a valid database name")
-            clear ; . createdb.sh      ; break
+            clear ; ./createdb     ; break
             ;;
   "Exit")
   exit;;
@@ -46,9 +48,8 @@ else
   else
    mkdir $databaseName
    echo "Database Created Successfully :)"
-    cd ../create
+    # cd ../create
    fi
 
 
 fi
-

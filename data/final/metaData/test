@@ -2,3 +2,6 @@ test:3
 ij:1:int
 name:2:string
 io:3:int
+test:2
+id:1:int
+na:2:string
