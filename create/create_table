@@ -132,6 +132,7 @@ function CreateTablefiles(){
     table_file="$path/$table_name"
     meta_file="$path/metaData/$table_name"
 
+    echo 
     #echo $PWD
     echo "$table_name:$ColsNumber"  >> $meta_file #inset tbl name& number of cols
     
@@ -165,24 +166,25 @@ function CreateTablefiles(){
 colHeaders=()
 colType=()
 # copy with it till now
-cd ../
-
 
 #path=$PWD/data/$connected_db
 
-path=$PWD/data/tmp
+path=$PWD/data/final
+
+
+echo $path
 
 
 # start running right here
-getTableName 
+#getTableName 
 
-# if validName $1 :
-# then
-#     table_name=$1
-# else :
-#     getTableName $1
-
-
+if validName $1 :
+then
+    echo "valid"
+    table_name=$1
+else :
+    getTableName $1
+fi
 
 
 if duplicatedTable $table_name
@@ -194,6 +196,7 @@ else
     CreateTablefiles  #touch file
     echo "table created successfully"
 fi
+
 
 #CreateColumns 
 # echo colsname is ${colHeaders[@]}

@@ -1,0 +1,27 @@
+
+
+# creat tbale table_name
+# creat db database_name
+
+#cd file 
+db_name=tmp
+
+function Create(){
+
+    if [ $# -eq 0 ] #number of arguments is zero
+        then
+        echo "create: not a valid query "
+        return
+    elif [ $1 == "table" ]
+        then
+        echo "inside table"
+        create_table $2    
+
+    elif [ $1 == 'database' ]
+        then
+        createdb $2 # $2 = name
+        return
+    fi
+}
+
+Create $1 $2
