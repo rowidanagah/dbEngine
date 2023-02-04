@@ -10,4 +10,11 @@ update
     3-  cols number 
 
 4- get pk
-5- get record -> intersection
+
+5- get record -> validate a record with the given pk exist :)"
+
+intersection
+
+6- get col name -> validate colname -> all string 
+
+6.1 - check existence of the given col name

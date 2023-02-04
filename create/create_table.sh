@@ -87,13 +87,12 @@ function validateColName(){
 
 # a function that will handel creating col along with its types
 function CreateColumns(){
-    typeset -i numOfCols
     
     read -p "write your number of columns : " numOfCols
     if checkTypeofInt $numOfCols
     then 
         let ColsNumber=$numOfCols+1
-        echo $ColsNumber
+        echo "$ColsNumber KKLK"
         while [ $numOfCols -gt 0 ]
         do
             read -p "write column name : " col_name
@@ -120,9 +119,12 @@ function CreateColumns(){
             fi 
             
         done
-        else 
+    
+    else 
             echo "write a valid number of columns "
-        fi
+            CreateColumns
+             
+    fi
 }
 
 # to handel file for table cols records and metadata file

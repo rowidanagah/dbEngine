@@ -1,4 +1,8 @@
 RowidaN:3
-i:1:int
+id:1:int
 name:2:string
 age:3:int
+
+
+
+name : num : type
