@@ -11,19 +11,18 @@
 
 ### excute commands 
 
-# base="$PWD"
-# PATH="$base:$base/connect:$base/create:$base/helpers:$PATH"
+base="$PWD"
+
+PATH="$base:$base/connect:$PATH"
 
 
 # echo $PATH
 
 
-# while true
-# do
+while true
+do
 	read -p "shql > " cmd
 	cmd=". $cmd" ## ec=xcute source  . s1.sh
-	eval $cmd
-	
-    
-# done
+	eval $cmd	
+done
 

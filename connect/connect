@@ -21,9 +21,18 @@ function checkDbDir(){
         return 1
     fi 
 }
-cd ..
 
+
+# START FROM HERE
+
+echo "connecting to database "
+
+#$1 -> database name
 path=$PWD/data/$1
+
+
+echo $path
+
 
 if validName $1
 then
@@ -32,11 +41,13 @@ then
 
         echo "connected to $1 database"
         db_name=$1
-        PS3=`$1 > `
+        PS3='$1 > '
     else 
         echo "database not exists"
     fi 
 fi
+# change prompt name to the Connected database name
 
-
+# instead of shql
 export connected_db=$db_name
+echo $connected_db

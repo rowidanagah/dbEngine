@@ -14,8 +14,13 @@ function Create(){
         return
     elif [ $1 == "table" ]
         then
-        echo "inside table"
-        create_table $2    
+        if [ -z $connected_db  ]
+        then  
+            echo "you need to connect to a database first"
+        else 
+             echo "inside table"
+             create_table $2 
+        fi 
 
     elif [ $1 == 'database' ]
         then

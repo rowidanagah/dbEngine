@@ -11,17 +11,16 @@ then
 #    . select2.sh  path of next
 else
     cd ../connect
+    echo $PWD
    echo "it doesn't exist!"
-    options=("Enter agian name of Database" "Create one" "Exit")
+    options=("Enter agian name of Database" "Exit")
 	select val in "${options[@]}"
 	do
 		case $val in
             "Enter agian name of Database")
-            clear ; . connect.sh ; clear ; break
+            clear ; . selecttoconnect.sh ; clear ; break
             ;;
-             "Create one")
-            clear ; ../create/. createdb.sh  ; break
-            ;;
+           
 
              "Exit")
             clear ; exit
@@ -30,3 +29,7 @@ else
 		esac
 	done
 fi
+
+echo $PWD
+
+cd connect/

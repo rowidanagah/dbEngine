@@ -169,7 +169,8 @@ colType=()
 
 #path=$PWD/data/$connected_db
 
-path=$PWD/data/final
+echo $connected_db
+path=$PWD/data/$connected_db
 
 
 echo $path
