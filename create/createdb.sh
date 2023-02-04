@@ -3,7 +3,10 @@ echo "Enter the name of database "
 read databaseName
 
 cd ..
+echo $PWD
+
 cd data
+
 if [[ -d "$databaseName" ]]
 then
   clear;
@@ -46,7 +49,7 @@ else
   else
    mkdir $databaseName
    echo "Database Created Successfully :)"
-    cd ../create
+    # cd ../create
    fi
 
 
