@@ -1,16 +1,13 @@
 echo "Enter the name of database you want to delete "
 read databaseName
-# if [  $databaseName == "back"  ]
-# then
-# 	clear 
-# 	. select.sh
-# fi
+
   cd ..
 cd data
 if [[ -d "$databaseName" ]]
 then
   
-	rm -r $databaseName
+	rm -r -i $databaseName
+	
 	if [[ ! -d "$databaseName" ]]
 	then
     	echo "Deleted!"
@@ -27,9 +24,6 @@ else
              "enter again name of Database")
             clear ; . dropdb.sh ; clear ; break
             ;;
-			#  "Back to MENU")
-            # clear ; . select.sh ; clear ; break
-            # ;;
              "Exit")
             echo "Goodbye :(" ; exit
             ;;

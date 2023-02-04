@@ -1,10 +1,5 @@
 echo "Enter the name of database you want to connect "
 read databaseName
-# if [  $databaseName == "back" ]
-# then
-#    clear
-# 	. select.sh
-# fi
 
  cd ..
 cd data
@@ -27,9 +22,7 @@ else
              "Create one")
             clear ; ../create/. createdb.sh  ; break
             ;;
-			#  "Back to MENU")
-            # clear ; . select.sh ; clear ; break
-            # ;;
+
              "Exit")
             clear ; exit
             ;;
