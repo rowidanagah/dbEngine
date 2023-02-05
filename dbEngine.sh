@@ -21,8 +21,8 @@ PATH="$base:$base/connect:$PATH"
 
 while true
 do
-	read -p "shql > " cmd
-	cmd=". $cmd" ## ec=xcute source  . s1.sh
-	eval $cmd	
+	read -p "dbEngine > " cmd
+	cmd=". $cmd" ## ecxcute source  . s1.sh
+	$cmd	
 done
 

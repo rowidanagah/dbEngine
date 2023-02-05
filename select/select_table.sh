@@ -35,15 +35,15 @@ function getTableName(){
 }
 
 function displayTableData(){
-    # giiven table name -> display its res using awk or cut :)"
-
+    # given table file -> display its res using awk or cut :)"
+    # $1 -> table file
 	#NR=$(awk -F : 'END{print NR}' $1)
 	
 	let NR=$(awk 'END { print NR }' $1)
 
 
 	tail -n$NR $1 >> select.txt
-
+  
 	column -t -s ':' select.txt  > output.txt  
 
 	cat output.txt
@@ -73,7 +73,7 @@ fi
 
 table_file=$PWD/data/$connected_db/$table_name
 
-echo $table_name
+#echo $table_name
 displayTableData $table_file
 
 

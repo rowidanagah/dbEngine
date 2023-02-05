@@ -1,12 +1,13 @@
+#!/bin/bash
 
 
-# drop  table
-# cmd   $1
-# drop  database
+# query 
+#  cmd     $1    $2
+#  update  table tablename
 
 if [ $# -eq 0 ] #number of arguments is zero
 then
-    echo "drop: not a valid query "
+    echo "update: not a valid query "
 
 elif [ $1 == "table" ]
 then
@@ -14,10 +15,9 @@ then
     then  
         echo "you need to connect to a database first"
     else 
-        dropTable
+        update_table.sh $2
     fi 
+else 
+    echo "update: not a valid query argument "
 
-elif [ $1 == 'database' ]
-then
-    dropdb.sh  
 fi

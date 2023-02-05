@@ -1,8 +1,8 @@
 
 
-# drop  table
+# list  table
 # cmd   $1
-# drop  database
+# list  database
 
  if [ $# -eq 0 ] #number of arguments is zero
 then

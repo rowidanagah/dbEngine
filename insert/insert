@@ -2,9 +2,10 @@
 
 # check if table file exists 
 function duplicatedTable(){
+    #echo $1
     if [[ -f $1 ]] 
     then
-        echo "duplicated file name "
+       # echo "duplicated file name "
         return 0
     else 
         return 1
@@ -97,10 +98,11 @@ function insertIntoTable(){
 }
 
 function getfielddNumber(){
-    # number of record -> number of lines 
+    # number of records -> number of lines 
     # get table name  as a parameter -> actual table file :)"
     #let NR=$(awk -F : '{print NR}' $1)
     # echo $1
+    # to handle autoinc pkval
 
     let NR=$(awk 'END { print NR }' $1)
 }
@@ -150,26 +152,24 @@ function InsertIntoColumns(){
 # insert into tablename
 # cmd    $1    $2
 
+
 table_file=$PWD/data/$connected_db/metaData/$2 ## meta file
 
 table=$PWD/data/$connected_db/$2 # table file
 
 
-getColsNameAndTypes $table_file
-# insert into table 
-echo "cols name of $2 "
-echo ${colHeaders[@]}
-echo "---------------------"
+if duplicatedTable $table
+then
 
+    getColsNameAndTypes $table_file
+    # insert into table 
+    echo "cols name of $2 "
+    echo ${colHeaders[@]}
+    echo "---------------------"
 
-InsertIntoColumns $table_file
-insertIntoTable $table
+    InsertIntoColumns $table_file
+    insertIntoTable $table
 
-
-# if duplicatedTable $2:
-# then
-#     CreateColumns 
-#     insertIntoTable
-# else 
-#     echo "table does't exist"
-# fi
+else 
+    echo "table does't exist"
+fi
