@@ -190,7 +190,7 @@ then
     getTableName
 else
     CreatePrimaryKey #get pk first
-    CreateColumns  # handel the rest of cols
+    CreateColumns  # handel the rest of cols # handle colname & types
     CreateTablefiles  #touch file
     echo "table created successfully"
 fi

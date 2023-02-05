@@ -25,9 +25,11 @@ function checkDbDir(){
 
 # START FROM HERE
 
+# connect 
+
 echo "connecting to database "
 
-#$1 -> database name
+# $1 -> database name
 path=$PWD/data/$1
 
 
@@ -41,8 +43,8 @@ then
 
         echo "connected to '$1' database"
         db_name=$1
-        propt="$1 >"
-        PS=$propt
+        # propt="$1 >"
+        # PS3=$propt
     else 
         echo "database not exists"
     fi 

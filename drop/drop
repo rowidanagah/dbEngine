@@ -14,7 +14,7 @@ then
     then  
         echo "you need to connect to a database first"
     else 
-        dropTable
+        dropTable.sh
     fi 
 
 elif [ $1 == 'database' ]

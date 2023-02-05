@@ -46,7 +46,7 @@ function checkTypeofCol(){
 # a function that will check of type int
 function checkTypeofInt(){
     # $1 -> for val name
-    if ! [[ $1 =~ ^[0-9]+$ ]]
+    if [[ $1 =~ ^[0-9]+$ ]]
     then 
         return 0
     else 
@@ -161,11 +161,16 @@ function getNewVal(){
     IFS=$OIFS
 
     read -p "write value of the '${colHeaders[colindex]}' column : " col_val
+    echo ${colType[colindex]}
+
+
+    # validate type of val match
     if checkTypeofCol $col_val ${colType[colindex]}
     then
         echo "valid col val"
         echo "col indx : $colindex"
         echo "col arr : ${old_record_array[@]}"
+        
         old_record_array[$colindex]="$col_val"
         echo ${old_record_array[@]}
 	    new_record=$( IFS=$':'; echo "${old_record_array[*]}" )
@@ -212,7 +217,7 @@ then
         read -p "enter pk val of the record you need to update :> " pk_val
     done
 
-    getColName # return col_name
+    getColName # return col_name validation  col name
 
     if CheckCOlExist $col_name
     then

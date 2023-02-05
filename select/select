@@ -26,7 +26,7 @@ function displayTableData(){
     # giiven table name -> display its res using awk or cut :)"
     echo 
 }
-
+# start  from here 
 # query 
 #  cmd     $1   $2     $3
 #  select  all  from   tablename 

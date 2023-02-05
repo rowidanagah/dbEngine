@@ -6,7 +6,7 @@ cd data
 if [[ -d "$databaseName" ]]
 then
   
-	rm -r -i $databaseName
+	rm -r  $databaseName
 	
 	if [[ ! -d "$databaseName" ]]
 	then

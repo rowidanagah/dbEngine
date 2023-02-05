@@ -41,14 +41,13 @@ function displayTableData(){
 	
 	let NR=$(awk 'END { print NR }' $1)
 
-
 	tail -n$NR $1 >> select.txt
   
 	column -t -s ':' select.txt  > output.txt  
 
 	cat output.txt
 
-	rm select.txt output.txt
+	rm select.txt osutput.txt # cash memory
 }
 
 # Start from here
