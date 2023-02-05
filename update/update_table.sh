@@ -55,16 +55,16 @@ function checkTypeofInt(){
 }
 
 # check if table file exists 
-function duplicatedTable(){
+# check if table file exists 
+function checkTableFile(){
     if [[ -f $1 ]] 
     then
-        echo "duplicated file name "
         return 0
     else 
         return 1
     fi
-
 }
+
 
 # get& handel table name -> keep on reading till we get a valid name
 function getTableName(){
@@ -86,7 +86,7 @@ function getColName(){
 function getColsumbers(){
     ## GET table name as parameter of this function :)" -> from meta file
 	ColsNumber=$(awk -F : 'NR==1{print $2}' $1)
-	echo $ColsNumber
+	#echo $ColsNumber
 }
 
 function getColsNameAndTypes(){
@@ -97,7 +97,7 @@ function getColsNameAndTypes(){
 	echo ${colHeaders[@]}
 	echo ${colType[@]}
     PK=${colHeaders[0]}
-    echo $PK
+    #echo $PK
 }
 
 # kinda of validation if a record with a given pk is given
@@ -111,7 +111,6 @@ function find_record(){
     for record in $(cut -f1 -d: "$1") 
     do
         # if pk was found
-        echo $1
 		if [[ $record = "$2" ]]
         then
            echo "this record was found ${record} "
@@ -151,7 +150,7 @@ function CheckCOlExist(){
         fi
         let colindex+=1;
     done
-    echo "col name not found"
+        echo "col name not found"
     return 1
 
 }
@@ -196,29 +195,33 @@ function update_table_file(){
 
 
 # start from here 
+
 table_file=$PWD/data/$connected_db/metaData/$1 ## meta file
 table_name=$PWD/data/$connected_db/$1 # table file
 
+if checkTableFile $table_file
+then
+    getColsNameAndTypes $table_file
+    getColsumbers $table_file
 
-getColsNameAndTypes $table_file
-getColsumbers $table_file
-
-typeset -i pk_val
-
-read -p "enter pk val of the record you need to update :> " pk_val
-
-while ! find_record $table_name $pk_val
-do
     typeset -i pk_val
-
     read -p "enter pk val of the record you need to update :> " pk_val
+    while ! find_record $table_name $pk_val
+    do
+        typeset -i pk_val
+        read -p "enter pk val of the record you need to update :> " pk_val
+    done
 
-done
+    getColName # return col_name
 
+    if CheckCOlExist $col_name
+    then
+        getNewVal 
+        update_table_file
 
-getColName # return col_name
-
-CheckCOlExist $col_name
-
-getNewVal 
-update_table_file
+    else
+        echo "Goodbye :("
+    fi
+else
+	echo "table with '$1' name not found"
+fi
