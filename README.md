@@ -35,3 +35,6 @@ How to interact with our database query engine .
   PATH="$base:$base/create:$base/connect:$base/drop:$base/list:$base/select:$base/update:$base/insert:$PATH"
   ```
 
+2- Excute these custom commands or queries
+
+- 
