@@ -38,3 +38,10 @@ How to interact with our database query engine .
 2- Excute these custom commands or queries
 
 - 
+
+
+
+# Demo With All Validation
+
+[BashProject.webm](https://user-images.githubusercontent.com/52299389/217188332-0bb35a77-6d94-47f1-8567-fa8ebbfb7b45.webm)
+
